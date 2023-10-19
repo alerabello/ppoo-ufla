@@ -1,12 +1,18 @@
 import java.util.Scanner;
 
+
 public class Menu {
-    private static Scanner scanner = new Scanner(System.in);
-    /* contrutor para class  */
-    private static Agenda agenda = new Agenda();
+    private static Scanner scanner;
+    private static Agenda agenda;
+
+    public Menu() {
+        scanner = new Scanner(System.in);
+        agenda = new Agenda();
+    }
 
     public static void main(String[] args) {
         int opcao = 0;
+        Menu menu = new Menu();
         do {
             System.out.println("=======Menu de Opções=======");
             System.out.println("1 - Cadastrar uma pessoa física");
