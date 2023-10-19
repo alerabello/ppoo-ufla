@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
-class Menu {
+public class Menu {
     private static Scanner scanner = new Scanner(System.in);
+    /* contrutor para class  */
     private static Agenda agenda = new Agenda();
 
     public static void main(String[] args) {
@@ -51,7 +52,7 @@ class Menu {
         String cpf = scanner.nextLine();
         System.out.print("Estado Civil: ");
         String estadoCivil = scanner.nextLine();
-
+/* Passar para a agenda */
         PessoaFisica pessoaFisica = new PessoaFisica(nome, endereco, email, cpf, estadoCivil);
         agenda.adicionarContato(pessoaFisica);
         System.out.println("Pessoa física cadastrada com sucesso!");
