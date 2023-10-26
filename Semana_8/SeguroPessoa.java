@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
 // Interface que define o método para calcular o prêmio do seguro
-interface Seguro {
+interface Segurado {
     double calcularPremio();
 }
 
 // Classe para representar um seguro de vida
-class SeguroVida implements Seguro {
+class SeguroPessoa implements Segurado {
     private int idade;
     private String genero;
 
-    public SeguroVida(int idade, String genero) {
+    public SeguroPessoa(int idade, String genero) {
         this.idade = idade;
         this.genero = genero;
     }
