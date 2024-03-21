@@ -23,7 +23,7 @@ public class App {
         System.out.println("Digite quantas vezes o carro deve acelerar:");
         int vezes = entrada.nextInt();
 
-        Carro carro = new Carro(modelo, 80);
+        Carro carro = new Carro(modelo, 10);
         System.out.println("Modelo: " + carro.getModelo());
         System.out.println("Velocidade: " + carro.getVelocidade());
 
