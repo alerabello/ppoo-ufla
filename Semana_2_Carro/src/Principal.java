@@ -44,7 +44,12 @@ public class Principal {
     }
 
     public void executar() {
-        exibirMenu();
+        int opcao;
+        do {
+            exibirMenu();
+            opcao = entrada.nextInt();
+            tratarOpcaoMenu(opcao);
+        } while (opcao != 5);
     }
 
     public void exibirMenu() {
