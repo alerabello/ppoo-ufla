@@ -32,7 +32,7 @@ public class Carro {
         velocidade += 5;
     }
     // Método de acesso para Reduzir
-    public void reduzir() {
+    public void reduzirVelocidade() {
         if (velocidade >= 5) {
             velocidade -= 5;
         }

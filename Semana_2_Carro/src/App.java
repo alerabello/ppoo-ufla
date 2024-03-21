@@ -1,38 +1,65 @@
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
-        /*
-    // Passo 1 e 2 
-        Carro carro = new Carro("Fusca", 80);
-        System.out.println("Modelo: " + carro.getModelo());
-        System.out.println("Velocidade: " + carro.getVelocidade());
-    //Passo 3 - Acelerando
-        carro.acelerar();
-        System.out.println("Velocidade após acelerar: " + carro.getVelocidade());
+    private Carro carro;
+    private Scanner entrada = new Scanner(System.in);
 
-        carro.reduzir();
-        System.out.println("Velocidade após reduzir: " + carro.getVelocidade());
-        */
-    //Passo 4 - Obtendo dados do usuário
-        Scanner entrada = new Scanner(System.in);
+    public void exibirMenu() {
+        System.out.println("1. Criar o carro");
+        System.out.println("2. Acelerar o carro");
+        System.out.println("3. Reduzir a velocidade");
+        System.out.println("4. Exibir os dados do carro");
+        System.out.println("5. Sair");
+        System.out.println("Digite sua opção:");
+    }
 
-        System.out.println("Digite o modelo do carro:");
-        String modelo = entrada.nextLine();
-
-        System.out.println("Digite quantas vezes o carro deve acelerar:");
-        int vezes = entrada.nextInt();
-
-        Carro carro = new Carro(modelo, 10);
-        System.out.println("Modelo: " + carro.getModelo());
-        System.out.println("Velocidade: " + carro.getVelocidade());
-
-        for (int i = 0; i < vezes; i++) {
-            carro.acelerar();
+    public void tratarOpcaoMenu(int opcao) {
+        switch (opcao) {
+            case 1:
+                System.out.println("Digite o modelo do carro:");
+                String modelo = entrada.nextLine();
+                carro = new Carro(modelo, 10);
+                break;
+            case 2:
+                if (carro != null) {
+                    carro.acelerar();
+                } else {
+                    System.out.println("Carro não criado.");
+                }
+                break;
+            case 3:
+                if (carro != null) {
+                    carro.reduzirVelocidade();
+                } else {
+                    System.out.println("Carro não criado.");
+                }
+                break;
+            case 4:
+                if (carro != null) {
+                    System.out.println("Modelo: " + carro.getModelo());
+                    System.out.println("Velocidade: " + carro.getVelocidade());
+                } else {
+                    System.out.println("Carro não criado.");
+                }
+                break;
+            case 5:
+                System.out.println("Saindo...");
+                break;
+            default:
+                System.out.println("Opção inválida.");
         }
+    }
 
-        System.out.println("Velocidade após acelerar: " + carro.getVelocidade());
+    public static void main(String[] args) {
+        App app = new App();
+        int opcao;
 
-        entrada.close();
+        do {
+            app.exibirMenu();
+            opcao = app.entrada.nextInt();
+            app.tratarOpcaoMenu(opcao);
+        } while (opcao != 5);
+
+        app.entrada.close();
     }
 }
