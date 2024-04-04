@@ -13,7 +13,7 @@ public class CaixaEletronico {
     public void menu() {
         int opcao;
         do {
-            System.out.println("1. Criar Conta\n2. Consultar Saldo\n3. Depositar\n4. Sacar\n5. Listar Contas\n6. Sair");
+            System.out.println("1. Criar Conta\n2. Consultar Saldo\n3. Depositar\n4. Sacar\n5. Listar Contas\n6. Remover Conta \n7. Sair\nEscolha uma opção:");
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
@@ -113,7 +113,7 @@ public class CaixaEletronico {
         }
         return null;
     }
-    
+
     private void removerConta() {
         System.out.println("Informe o número da conta a ser removida:");
         int numeroConta = scanner.nextInt();
