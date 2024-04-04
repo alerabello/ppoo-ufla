@@ -1,18 +1,19 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CaixaEletronico {
-    private ContaBancaria conta;
+    private ArrayList<ContaBancaria> contas;
     private Scanner scanner;
 
     public CaixaEletronico() {
+        this.contas = new ArrayList<>();
         this.scanner = new Scanner(System.in);
     }
-
 
     public void menu() {
         int opcao;
         do {
-            System.out.println("1. Criar Conta\n2. Consultar Saldo\n3. Depositar\n4. Sacar\n5. Sair");
+            System.out.println("1. Criar Conta\n2. Consultar Saldo\n3. Depositar\n4. Sacar\n5. Listar Contas\n6. Sair");
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
@@ -28,39 +29,52 @@ public class CaixaEletronico {
                     sacar();
                     break;
                 case 5:
+                    listarContas();
+                    break;
+                case 6:
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida!");
             }
-        } while (opcao != 5);
+        } while (opcao != 6);
     }
 
     private void criarConta() {
         System.out.println("Informe o limite da conta:");
         double limite = scanner.nextDouble();
-        this.conta = new ContaBancaria(limite);
+        ContaBancaria novaConta = new ContaBancaria(0, null, limite);
+        this.contas.add(novaConta);
     }
 
     private void consultarSaldo() {
+        System.out.println("Informe o número da conta:");
+        int numeroConta = scanner.nextInt();
+        ContaBancaria conta = buscarConta(numeroConta);
         if (conta != null) {
             System.out.println("Saldo: " + conta.consultarSaldo());
         } else {
-            System.out.println("Conta não criada!");
+            System.out.println("Conta não encontrada!");
         }
     }
 
     private void depositar() {
+        System.out.println("Informe o número da conta:");
+        int numeroConta = scanner.nextInt();
+        ContaBancaria conta = buscarConta(numeroConta);
         if (conta != null) {
             System.out.println("Informe o valor a depositar:");
             double valor = scanner.nextDouble();
             conta.depositar(valor);
         } else {
-            System.out.println("Conta não criada!");
+            System.out.println("Conta não encontrada!");
         }
     }
 
     private void sacar() {
+        System.out.println("Informe o número da conta:");
+        int numeroConta = scanner.nextInt();
+        ContaBancaria conta = buscarConta(numeroConta);
         if (conta != null) {
             System.out.println("Informe o valor a sacar:");
             double valor = scanner.nextDouble();
@@ -70,7 +84,22 @@ public class CaixaEletronico {
                 System.out.println("Saldo insuficiente!");
             }
         } else {
-            System.out.println("Conta não criada!");
+            System.out.println("Conta não encontrada!");
         }
+    }
+
+    public void listarContas() {
+        for (ContaBancaria conta : contas) {
+            System.out.println("Número da conta: " + conta.getNumero() + ", Nome do cliente: " + conta.getNomeCliente());
+        }
+    }
+
+    public ContaBancaria buscarConta(int numeroConta) {
+        for (ContaBancaria conta : contas) {
+            if (conta.getNumero() == numeroConta) {
+                return conta;
+            }
+        }
+        return null;
     }
 }
