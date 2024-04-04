@@ -13,7 +13,7 @@ public class CaixaEletronico {
     public void menu() {
         int opcao;
         do {
-            System.out.println("1. Criar Conta\n2. Consultar Saldo\n3. Depositar\n4. Sacar\n5. Listar Contas\n6. Remover Conta \n7. Sair\nEscolha uma opção:");
+            System.out.println("1. Criar Conta\n2. Consultar Saldo\n3. Depositar\n4. Sacar\n5. Listar Contas\n6. Remover Conta \n7. Filtra Nome \n8. SAIR \nEscolha uma opção:");
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
@@ -31,16 +31,19 @@ public class CaixaEletronico {
                 case 5:
                     listarContas();
                     break;
-                    case 6:
+                case 6:
                     removerConta();
                     break;
                 case 7:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
-            }
-        } while (opcao != 7);
+                filtrarContasPorNome();
+                break;
+            case 8:
+                System.out.println("Saindo...");
+                break;
+            default:
+                System.out.println("Opção inválida!");
+        }
+    } while (opcao != 8);
     }
 
     private void criarConta() {
@@ -130,6 +133,18 @@ public class CaixaEletronico {
             }
         } else {
             System.out.println("Conta não encontrada!");
+        }
+    }
+
+    private void filtrarContasPorNome() {
+        System.out.println("Informe o nome (ou parte do nome) do cliente:");
+        scanner.nextLine(); // Consumir a linha restante
+        String nome = scanner.nextLine().toLowerCase();
+    
+        for (ContaBancaria conta : contas) {
+            if (conta.getNomeCliente().toLowerCase().contains(nome)) {
+                System.out.println("Número da Conta: " + conta.getNumero() + ", Nome do Cliente: " + conta.getNomeCliente());
+            }
         }
     }
 }
