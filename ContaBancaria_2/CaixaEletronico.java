@@ -31,13 +31,16 @@ public class CaixaEletronico {
                 case 5:
                     listarContas();
                     break;
-                case 6:
+                    case 6:
+                    removerConta();
+                    break;
+                case 7:
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida!");
             }
-        } while (opcao != 6);
+        } while (opcao != 7);
     }
 
     private void criarConta() {
@@ -54,7 +57,7 @@ public class CaixaEletronico {
         ContaBancaria novaConta = new ContaBancaria(numero, nomeCliente, limite);
         this.contas.add(novaConta);
     }
-    
+
     private void consultarSaldo() {
         System.out.println("Informe o número da conta:");
         int numeroConta = scanner.nextInt();
@@ -109,5 +112,24 @@ public class CaixaEletronico {
             }
         }
         return null;
+    }
+    
+    private void removerConta() {
+        System.out.println("Informe o número da conta a ser removida:");
+        int numeroConta = scanner.nextInt();
+        ContaBancaria conta = buscarConta(numeroConta);
+        if (conta != null) {
+            double saldo = conta.consultarSaldo();
+            if (saldo > 0) {
+                System.out.println("Não é possível cancelar contas com saldo disponível.");
+            } else if (saldo < 0) {
+                System.out.println("Não é possível cancelar contas em débito.");
+            } else {
+                contas.remove(conta);
+                System.out.println("Conta removida com sucesso!");
+            }
+        } else {
+            System.out.println("Conta não encontrada!");
+        }
     }
 }
