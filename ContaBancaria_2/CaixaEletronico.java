@@ -41,12 +41,20 @@ public class CaixaEletronico {
     }
 
     private void criarConta() {
+        System.out.println("Informe o número da conta:");
+        int numero = scanner.nextInt();
+        scanner.nextLine(); // Consumir a linha restante
+    
+        System.out.println("Informe o nome do cliente:");
+        String nomeCliente = scanner.nextLine();
+    
         System.out.println("Informe o limite da conta:");
         double limite = scanner.nextDouble();
-        ContaBancaria novaConta = new ContaBancaria(0, null, limite);
+    
+        ContaBancaria novaConta = new ContaBancaria(numero, nomeCliente, limite);
         this.contas.add(novaConta);
     }
-
+    
     private void consultarSaldo() {
         System.out.println("Informe o número da conta:");
         int numeroConta = scanner.nextInt();
